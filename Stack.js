@@ -1,22 +1,17 @@
 class Stack {
     constructor() {
-        this.stack = [];
+        this.last = null;
     }
 
-    add(data) {
-        this.stack.unshift(data)
-        return this.stack;
+    push(item) {
+        let prev = this.last;
+        this.last = {prev, item};
     }
 
-    delete() {
-        return this.stack.shift();
-    }
-
-    peek() {
-        return this.stack[0];
-    }
-
-    size() {
-        return this.stack.length;
+    pop() {
+        let el = this.last;
+        if (!el) return null;
+        this.last = el.prev;
+        return el.item
     }
 }
