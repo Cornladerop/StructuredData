@@ -1,17 +1,29 @@
 class Stack {
     constructor() {
         this.last = null;
+        this.length = 0;
     }
 
-    push(item) {
+    push(data) {
         let prev = this.last;
-        this.last = {prev, item};
+        this.last = {prev, data};
+        this.length++;
+        return this.last = {prev, data};
     }
 
     pop() {
         let el = this.last;
         if (!el) return null;
         this.last = el.prev;
-        return el.item
+        this.length--;
+        return el.data
+    }
+
+    peek() {
+        return this.last;
+    }
+
+    size() {
+        return this.length;
     }
 }
