@@ -1,8 +1,10 @@
-function Node(list, data) {
-    this.list = list;
-    this.data = data;
-    this.prev = null;
-    this.next = null;
+class Node {
+    constructor(list, data) {
+        this.list = list;
+        this.data = data;
+        this.prev = null;
+        this.next = null;
+    }
 }
 
 class DoublyLinkedList {
@@ -24,11 +26,12 @@ class DoublyLinkedList {
     pop() {
         if (this.length === 0) return null;
         let node = this.last;
-        node.list = null;
-        node.prev = null;
-        node.next = null;
+        let data = node.data;
+        this.last = node.prev;
+        node.prev.next = null;
+        node = null;
         this.length--;
-        return node.data;
+        return data;
     }
 
     size() {
