@@ -20,15 +20,18 @@ class Dequeue {
 
     pop() {
         let el = this.last;
+        let res = el.data;
         if (!el) return null;
         if (this.first === el) {
             this.first = null;
             this.last = null;
         } else {
             this.last = el.prev;
+            el.prev.next = null;
+            el = null;
         }
         this.length--;
-        return el.data;
+        return res;
     }
 
     unshift(data) {
@@ -46,15 +49,18 @@ class Dequeue {
 
     shift() {
         let el = this.first;
+        let res = el.data;
         if (!el) return null;
         if (this.last === el) {
             this.first = null;
             this.last = null;
         } else {
             this.first = el.next;
+            el.next.prev = null;
+            el = null;
         }
         this.length--;
-        return el.data;
+        return res;
     }
 
     size() {
